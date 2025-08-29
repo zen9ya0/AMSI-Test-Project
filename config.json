@@ -1,0 +1,47 @@
+{
+  "test_configuration": {
+    "enable_verbose_logging": false,
+    "test_timeout_seconds": 30,
+    "retry_attempts": 3,
+    "log_file_path": "amsi_test_log.txt",
+    "enable_registry_checks": true,
+    "enable_dll_analysis": true,
+    "enable_process_analysis": true,
+    "test_strings": [
+      "Invoke-Mimikatz",
+      "Invoke-ReflectivePEInjection",
+      "Invoke-Shellcode",
+      "Invoke-WmiCommand",
+      "Invoke-Command",
+      "IEX",
+      "Invoke-Expression"
+    ],
+    "bypass_methods": {
+      "reflection": true,
+      "assembly_loading": true,
+      "memory_patching": true,
+      "registry_manipulation": true,
+      "environment_variables": true,
+      "dll_hijacking": true,
+      "version_detection": true,
+      "process_injection": true,
+      "hook_bypass": true,
+      "verification": true
+    },
+    "output_format": "colored",
+    "save_results": true,
+    "results_file": "test_results.json"
+  },
+  "security_settings": {
+    "require_admin": false,
+    "enable_logging": true,
+    "log_security_events": true,
+    "max_test_duration": 300
+  },
+  "ui_settings": {
+    "show_progress_bar": true,
+    "enable_sound": false,
+    "color_scheme": "default",
+    "language": "en"
+  }
+}

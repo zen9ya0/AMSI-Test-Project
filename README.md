@@ -1,180 +1,153 @@
-# AMSI Information and Test Program
+# AMSI Enhanced Obfuscator
 
-This is a PowerShell-based information gathering and testing framework for AMSI (Antimalware Scan Interface), inspired by the [AMSI.NotFail](https://github.com/TXOne-Networks/AMSI.NotFail) project.
+A comprehensive PowerShell-based AMSI (Antimalware Scan Interface) analysis and command obfuscation tool that combines traditional obfuscation techniques with runspace manipulation concepts inspired by the [AMSI.NotFail](https://github.com/TXOne-Networks/AMSI.NotFail) project.
 
-## ⚠️ Disclaimer
+## Features
 
-**This tool is for educational and testing purposes only. It is designed to help security researchers, penetration testers, and system administrators understand how AMSI works and test their security measures. Do not use this tool for malicious purposes.**
+### 🔍 AMSI Analysis
+- **System Information**: PowerShell version, Windows version, execution policy
+- **AMSI Assembly Check**: Detection of AMSI availability
+- **Registry Analysis**: AMSI registry key inspection
+- **DLL Detection**: AMSI DLL file verification
+- **Security Services**: Windows Defender and security service status
+- **Environment Variables**: AMSI-related environment variable analysis
 
-## 🚀 Features
+### 🎭 Traditional Obfuscation
+- **Encoding Methods**: Base64, Hex, Unicode, ASCII, UTF8
+- **Variable Substitution**: Command verb/noun separation
+- **Command Restructuring**: Script variable assignment and execution
+- **Multi-Layer Obfuscation**: Progressive complexity levels (1-3)
 
-The program includes several analysis methods:
+### 🚀 Runspace Obfuscation (Inspired by AMSI.NotFail)
+- **Runspace Creation**: Independent PowerShell execution contexts
+- **ScriptBlock Building**: Dynamic command construction
+- **Session State Manipulation**: Variable injection and management
+- **Pipeline Control**: Alternative execution methods
 
-1. **AMSI Status Check** - Verifies if AMSI is loaded and available
-2. **PowerShell Version Detection** - Identifies PowerShell version and capabilities
-3. **Windows Version Information** - Shows OS details and build information
-4. **Registry Analysis** - Checks AMSI registry settings and configuration
-5. **DLL File Analysis** - Analyzes AMSI DLL files and their properties
-6. **Security Services Check** - Examines running security services
-7. **Execution Policy Check** - Shows current PowerShell execution policy
+## Project Structure
 
-## 📋 Prerequisites
+```
+AMSI_bypass/
+├── AMSI_Obfuscation.psm1          # PowerShell module with obfuscation functions
+├── AMSI_Obfuscator.ps1            # Traditional obfuscation script
+├── AMSI_Runspace_Obfuscator_fixed.ps1  # Enhanced script with runspace features
+├── Run_Enhanced_Obfuscator.bat    # Interactive batch menu
+├── obfuscation_config.json        # Configuration file
+├── sample_commands.txt            # Sample commands for testing
+└── README.md                      # This file
+```
 
-- Windows 10/11 or Windows Server 2016+
-- PowerShell 5.1 or PowerShell 7+
-- Administrative privileges (recommended for full analysis)
-- Execution policy that allows script execution
+## Usage
 
-## 🛠️ Installation
-
-1. Clone or download this repository
-2. Ensure PowerShell execution policy allows script execution:
+### Quick Start
+1. **Basic AMSI Analysis**:
    ```powershell
-   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   .\AMSI_Runspace_Obfuscator_fixed.ps1
    ```
 
-## 🎯 Usage
-
-### Simple Information Script
-Run the basic information gathering script:
-```powershell
-.\AMSI_Info.ps1
-```
-
-### Using Batch File
-Double-click the batch file for easy execution:
-```
-Run_AMSI_Info.bat
-```
-
-### Command Line Execution
-```powershell
-powershell -ExecutionPolicy Bypass -File "AMSI_Info.ps1"
-```
-
-## 🔍 Understanding the Results
-
-### Color Coding
-- **Red**: AMSI is active/available or security features found
-- **Green**: AMSI is not available or security features not found
-- **Yellow**: Informational messages and details
-- **Blue**: Section headers and navigation
-- **White**: General text and descriptions
-
-### Key Information
-- **AMSI Status**: Shows whether AMSI is loaded in the current session
-- **Registry Keys**: Displays AMSI configuration in the Windows registry
-- **DLL Files**: Lists AMSI-related files and their properties
-- **Security Services**: Shows status of Windows security services
-- **PowerShell Version**: Indicates PowerShell capabilities and AMSI support
-
-## 🧪 What the Script Checks
-
-### System Information
-- PowerShell version and edition
-- Windows OS version and build
-- Execution policy settings
-
-### AMSI Components
-- Assembly availability
-- Registry configuration
-- DLL file presence and properties
-- Service status
-
-### Security Posture
-- Windows Defender status
-- Security Health Service
-- Advanced Threat Protection
-
-## 🔒 Security Considerations
-
-1. **Use in Controlled Environments**: Only test on systems you own or have explicit permission to test
-2. **Virtual Machines**: Consider using VMs for testing to avoid affecting production systems
-3. **Network Isolation**: Test in isolated network environments
-4. **Logging**: Be aware that AMSI-related activities may be logged by security systems
-
-## 📊 Expected Results
-
-### On Systems with AMSI Enabled
-- AMSI assembly will be available
-- Registry keys will be present
-- DLL files will be found
-- Security services will be running
-
-### On Systems with AMSI Disabled
-- AMSI assembly will not be available
-- Some registry keys may be missing
-- DLL files may not be accessible
-- Security services may be stopped
-
-### On Systems with Partial AMSI
-- Mixed results depending on configuration
-- May indicate security misconfiguration
-- Some components may be present while others are missing
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **Execution Policy Errors**
+2. **Traditional Obfuscation**:
    ```powershell
-   Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+   .\AMSI_Obfuscator.ps1 -Command "Get-Process" -ObfuscationLevel 2
    ```
 
-2. **Permission Denied**
-   - Run PowerShell as Administrator
-   - Check file permissions
+3. **Runspace Testing**:
+   ```powershell
+   .\AMSI_Runspace_Obfuscator_fixed.ps1 -TestRunspace
+   ```
 
-3. **Script Not Found**
-   - Ensure you're in the correct directory
-   - Check file path and name
+4. **Interactive Menu**:
+   ```cmd
+   Run_Enhanced_Obfuscator.bat
+   ```
 
-4. **Antivirus Blocking**
-   - The script is designed to be non-aggressive
-   - If blocked, check your antivirus settings
-   - Consider adding an exception for this directory
+### Advanced Usage
 
-## 📚 Technical Details
+#### File Processing
+Process a text file containing PowerShell commands:
+```powershell
+.\AMSI_Obfuscator.ps1 -InputFile "commands.txt" -OutputFile "output.ps1" -GenerateScript -ObfuscationLevel 3
+```
 
-### AMSI Architecture
-- **amsi.dll**: Core AMSI implementation
-- **Registry Keys**: Configuration and feature settings
-- **Assembly Loading**: .NET integration for PowerShell
-- **Service Integration**: Windows security service coordination
+#### Comprehensive Testing
+Test all obfuscation methods:
+```powershell
+.\AMSI_Obfuscator.ps1 -Command "Get-Process" -TestObfuscation
+```
 
-### Information Gathered
-- **System State**: Current AMSI availability
-- **Configuration**: Registry settings and DLL properties
-- **Services**: Security service status and startup types
-- **Environment**: PowerShell and Windows version details
+#### Help and Documentation
+```powershell
+.\AMSI_Obfuscator.ps1 -ShowHelp
+.\AMSI_Runspace_Obfuscator_fixed.ps1 -ShowHelp
+```
 
-## 🤝 Contributing
+## Obfuscation Levels
 
-This project is open for educational purposes. If you have improvements or additional analysis methods to add:
+### Level 1: Basic Encoding
+- Base64 encoding of commands
+- Simple string manipulation
 
-1. Fork the repository
-2. Add your improvements
-3. Test thoroughly
-4. Submit a pull request
+### Level 2: Variable Substitution
+- Command verb/noun separation
+- Variable-based command construction
 
-## 📄 License
+### Level 3: Advanced Restructuring
+- Script variable assignment
+- Invoke-Expression usage
+- Multi-step execution
 
-This project is provided as-is for educational purposes. Use at your own risk and only on systems you own or have permission to test.
+## Runspace Features
 
-## 🔗 References
+The runspace obfuscation incorporates concepts from the AMSI.NotFail project:
 
-- [Microsoft AMSI Documentation](https://docs.microsoft.com/en-us/windows/win32/amsi/)
-- [AMSI.NotFail Project](https://github.com/TXOne-Networks/AMSI.NotFail)
-- [PowerShell Security Best Practices](https://docs.microsoft.com/en-us/powershell/scripting/security/)
+- **Independent Execution Contexts**: Creates separate PowerShell runspaces
+- **ScriptBlock Manipulation**: Dynamic command building
+- **Session State Control**: Variable injection and management
+- **Alternative Execution Paths**: Bypasses traditional command parsing
 
-## 📞 Support
+## Configuration
 
-For issues or questions:
-1. Check the troubleshooting section
-2. Review PowerShell execution logs
-3. Ensure proper permissions and execution policy
-4. Test in isolated environments first
+Edit `obfuscation_config.json` to customize:
+- Default obfuscation level
+- Enabled encoding methods
+- AMSI analysis options
+- Runspace settings
 
----
+## Requirements
 
-**Remember: This tool is for educational and legitimate security testing only. Always obtain proper authorization before testing on any system.**
+- **PowerShell 5.1+** or **PowerShell Core 6.0+**
+- **Windows 10/11** or **Windows Server 2016+**
+- **Execution Policy**: Bypass or RemoteSigned
+
+## Security Notice
+
+⚠️ **This tool is for educational and authorized testing purposes only.**
+
+- Do NOT use for unauthorized access or malicious purposes
+- Always ensure you have proper authorization before testing
+- Some antivirus software may flag obfuscated commands
+- Use in isolated testing environments
+
+## Technical Details
+
+### AMSI Integration
+The tool analyzes AMSI availability and configuration to understand the security posture of the target system.
+
+### Obfuscation Techniques
+Combines multiple encoding and restructuring methods to create complex command variations that may evade detection.
+
+### Runspace Implementation
+Uses PowerShell's runspace capabilities to create isolated execution contexts, inspired by C# implementations in the AMSI.NotFail project.
+
+## Contributing
+
+This project demonstrates various obfuscation and AMSI analysis techniques. Contributions and improvements are welcome.
+
+## License
+
+Educational use only. Please respect all applicable laws and regulations.
+
+## Acknowledgments
+
+- Inspired by the [AMSI.NotFail](https://github.com/TXOne-Networks/AMSI.NotFail) project
+- Built for educational and authorized testing purposes
+- Demonstrates PowerShell security and obfuscation concepts

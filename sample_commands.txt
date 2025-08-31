@@ -1,0 +1,13 @@
+# Sample PowerShell Commands for Testing
+# This file contains various PowerShell commands to test the obfuscator
+
+Get-Process
+Get-Service
+Get-ComputerInfo
+Get-Date
+Get-Location
+Get-ChildItem
+Get-Process | Where-Object {$_.CPU -gt 10}
+Get-Service | Where-Object {$_.Status -eq "Running"}
+Get-EventLog -LogName System -Newest 5
+Get-WmiObject -Class Win32_OperatingSystem

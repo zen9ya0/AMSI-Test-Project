@@ -1,0 +1,33 @@
+{
+  "obfuscation_settings": {
+    "default_level": 2,
+    "encoding_methods": [
+      "Base64",
+      "Hex",
+      "Unicode",
+      "ASCII",
+      "UTF8"
+    ],
+    "variable_substitution": true,
+    "command_restructuring": true,
+    "multi_layer": true
+  },
+  "amsi_analysis": {
+    "check_registry": true,
+    "check_dll": true,
+    "check_services": true,
+    "check_environment": true,
+    "check_assembly": true
+  },
+  "output_settings": {
+    "include_comments": true,
+    "include_timestamps": true,
+    "encoding": "UTF8"
+  },
+  "runspace_settings": {
+    "enable_runspace_obfuscation": true,
+    "default_runspace_type": "CreateRunspace",
+    "scriptblock_building": true,
+    "pipeline_manipulation": true
+  }
+}
